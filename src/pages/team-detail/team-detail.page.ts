@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { AlertController, NavController, NavParams, ToastController } from 'ionic-angular';
 
 import * as _ from 'lodash';
 import * as moment from 'moment';
@@ -25,10 +25,13 @@ export class TeamDetailPage {
   private tourneyData : any;
   teamStandings:any;
   useDateFilter:boolean = false;
+  isFollowing:boolean = false;
 
   constructor(public nav: NavController,
               private navParams : NavParams,
-              private eliteApi : EliteApi) {
+              private eliteApi : EliteApi,
+              private alertCtrl : AlertController,
+              private toastCtrl : ToastController) {
   }
 
   ionViewWillLoad() {
@@ -73,6 +76,10 @@ export class TeamDetailPage {
       return game.scoreDisplay ? game.scoreDisplay[0] : '';
   }
 
+  getScoreClass(game){
+    return game.scoreDisplay.indexOf('W') === 0 ? 'badge-primary' : 'badge-danger';
+  }
+
   gameClicked($event, game){
     let sourceGame = this.tourneyData.games.find(g => g.id === game.gameId);
     this.nav.parent.parent.push(GamePage,sourceGame);
@@ -83,5 +90,36 @@ export class TeamDetailPage {
         this.games = _.filter(this.allGames, g => moment(g.time).isSame(this.dateFilter, 'day'));
     else
         this.games = this.allGames;
+  }
+
+  toggleFollow(){
+      if(this.isFollowing){
+        let confirm = this.alertCtrl.create({
+          title: 'Unfollow ?',
+          message: 'Are you sure you want to unfollow ? ',
+          buttons:[
+            {
+              text:'Yes',
+              handler:()=>{
+                this.isFollowing = false;
+                //TODO : persist data here later
+                let toast = this.toastCtrl.create({
+                  message:'you have unfollowed this team',
+                  duration:2000,
+                  position : 'bottom'
+                });
+                toast.present();
+              }
+            },
+            {
+              text:'No'
+            }
+          ]
+        });
+
+        confirm.present();
+      }else{
+        this.isFollowing = true;
+      }
   }
 }

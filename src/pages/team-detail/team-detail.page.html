@@ -6,12 +6,18 @@
    <ion-card>
       <ion-card-content>
           <ion-row>
-              <ion-col>
+              <ion-col width-50>
                   <h2>Record : {{teamStandings.wins}} - {{teamStandings.losses}}</h2>
                   <p>Coach : {{team.coach}}</p>
               </ion-col>
-              <ion-col>
-
+              <ion-col width-50 text-right>
+                  <button ion-button outline (click)="toggleFollow()" *ngIf="!isFollowing">
+                    <ion-icon name="star"></ion-icon>
+                    Add Favorite
+                  </button>
+                  <button ion-button (click)="toggleFollow()" *ngIf="isFollowing">
+                    <ion-icon name="star"></ion-icon>
+                  </button>
               </ion-col>
           </ion-row>
           <ion-item>
@@ -33,9 +39,9 @@
                 <p>{{game.homeAway}} - {{game.opponent}}</p>
                 <p>{{game.location}}</p>
               </ion-col>
-              <ion-col>
+              <ion-col width-20>
                 <h4>{{game.scoreDisplay}}</h4>
-                <ion-badge color="secondary">{{getScoreWorL(game)}}</ion-badge>
+               <ion-badge [class]="getScoreClass(game)">{{getScoreWorL(game)}}</ion-badge>
               </ion-col>
           </ion-row>
      </ion-item>
