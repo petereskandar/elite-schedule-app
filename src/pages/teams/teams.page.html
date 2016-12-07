@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar primary>
+  <ion-navbar color="primary">
     <ion-title>Teams</ion-title>
   </ion-navbar>
 
@@ -16,7 +16,7 @@
 <ion-content padding>
   <ion-list>
     <ion-item-group *ngFor="let division of teams">
-      <ion-item-divider secondary>{{division.divisionName}}</ion-item-divider>
+      <ion-item-divider class="ion-item-divider">{{division.divisionName}}</ion-item-divider>
       <button ion-item *ngFor="let team of division.divisionTeams" (click)="itemTapped($event, team)">
         {{team.name}}
       </button>
