@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-navbar primary>
+      <button ion-button menuToggle icon-only>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Elite Schedule</ion-title>
+  </ion-navbar>
+  <ion-toolbar secondary>
+    <ion-title>My Teams</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card *ngIf="!favorites">
+      <ion-card-header class="my-teams-header">
+        No Followed Teams
+      </ion-card-header>
+      <ion-card-content>
+        <p>You are not currently following any teams.</p>
+        <p>First select a tournament,
+          then you can follow teams for their team page</p>
+        <button ion-button (click)="goToTournaments()" full>
+          <ion-icon name="search"> </ion-icon>
+          Find a Tournament
+        </button>
+      </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="favorites">
+    <ion-list>
+        <ion-list-header class="my-teams-header">Followed Teams</ion-list-header>
+        <button ion-item *ngFor="let item of favorites" (click)="favoriteTapped($event, item)">
+            <ion-icon name="star"></ion-icon>
+            {{item.team.name}}
+            <p>{{item.tournamentName}}</p>
+        </button>
+    </ion-list>
+    <ion-card-content>
+        <p>To Follow More Teams, Select a Tournament, then you can follow teams from
+          their team page.</p>
+
+        <button ion-button (click)="goToTournaments()" full>
+          <ion-icon name="search"> </ion-icon>
+          Find a Tournament
+        </button>
+    </ion-card-content>
+  </ion-card>
+
+
+  <!--<ion-list>
+    <ion-list-header>Followed Teams</ion-list-header>
+    <button ion-item *ngFor="let item of favorites" (click)="favoriteTapped($event, item)">
+      <ion-icon name="star"></ion-icon>
+      {{item.team.name}}
+      <p>{{item.tournamentName}}</p>
+    </button>
+  </ion-list>
+  <p>To Follow More Teams, Select a Tournament, then you can follow teams from
+  their team page.</p>
+
+  <button ion-button (click)="goToTournaments()" full>
+    <ion-icon name="search"> </ion-icon>
+     Find a Tournament
+  </button>-->
+</ion-content>
