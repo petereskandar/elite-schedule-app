@@ -3,17 +3,32 @@
   </ion-header>
 
  <ion-content>
+   <ion-card>
+      <ion-card-content>
+          <ion-row>
+              <ion-col>
+                  <h2>Record : {{teamStandings.wins}} - {{teamStandings.losses}}</h2>
+                  <p>Coach : {{team.coach}}</p>
+              </ion-col>
+              <ion-col>
+
+              </ion-col>
+          </ion-row>
+      </ion-card-content>
+   </ion-card>
    <ion-list>
      <ion-item *ngFor="let game of games" (click)="gameClicked($event, game)">
           <ion-row>
-              <ion-col>
-
+              <ion-col width-20>
+                  <p>{{game.time | date: 'M/d/yy'}}</p>
+                  <p>{{game.time | date: 'shortTime'}}</p>
+              </ion-col>
+              <ion-col width-60>
+                <p>{{game.homeAway}} - {{game.opponent}}</p>
+                <p>{{game.location}}</p>
               </ion-col>
               <ion-col>
-
-              </ion-col>
-              <ion-col>
-                
+                <h4>{{game.scoreDisplay}}</h4>
               </ion-col>
           </ion-row>
      </ion-item>
