@@ -6,13 +6,11 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import {MyTeamsPage} from '../pages/pages.ts';
 import {TournamentsPage} from '../pages/pages.ts';
 import {EliteApi} from '../shared/shared';
-import {userSettings} from '../shared/shared';
 
 @Component({
   templateUrl: 'app.html',
   providers: [
-    EliteApi,
-    userSettings]
+    EliteApi]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;

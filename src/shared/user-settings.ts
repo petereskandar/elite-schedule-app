@@ -4,7 +4,8 @@
 
 
 import {Injectable} from '@angular/core';
-import {LocalStorage, Storage} from 'ionic-angular';
+import {LocalStorage, Storage} from '@ionic/storage';
+import * as _ from 'lodash';
 
 @Injectable()
 export class userSettings{
@@ -28,5 +29,14 @@ export class userSettings{
 
   isFavoriteTeam(teamId){
     this.storage.get(teamId).then(value => value ? true : false);
+  }
+
+  getAllFavorites(){
+    let items = [];
+    _forIn(window.localStorage, (v,k) => {
+      items.push(JSON.parse(v))
+    });
+
+    return items.length ? items : null;
   }
 }
