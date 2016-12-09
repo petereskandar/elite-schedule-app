@@ -3,7 +3,7 @@
  */
 
 
-import {Injectable} from '@angular/core';
+/*import {Injectable} from '@angular/core';
 import {LocalStorage, Storage} from '@ionic/storage';
 import * as _ from 'lodash';
 
@@ -40,3 +40,4 @@ export class userSettings{
     return items.length ? items : null;
   }
 }
+*/

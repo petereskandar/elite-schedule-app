@@ -122,4 +122,15 @@ export class TeamDetailPage {
         this.isFollowing = true;
       }
   }
+
+  refreshAll(refresher){
+    refresher.complete();
+  }
+
+ /* refreshAll(refresher){
+    this.eliteApi.refreshCurrentTourney().subscribe(()=>{
+      refresher.complete();
+      this.ionViewWillLoad();
+    })
+  }*/
 }

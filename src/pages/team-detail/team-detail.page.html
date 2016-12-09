@@ -3,6 +3,11 @@
   </ion-header>
 
  <ion-content>
+   <ion-refresher (ionRefresh)="refreshAll($event)">
+     <ion-refresher-content>
+
+     </ion-refresher-content>
+   </ion-refresher>
    <ion-card>
       <ion-card-content>
           <ion-row>

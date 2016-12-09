@@ -30,14 +30,20 @@ export class StandingsPage {
     let tourneyData = this.eliteApi.getCurrentTourney();
     this.standings = tourneyData.standings;
 
-    this.allStandings = _.chain(this.standings)
+   /* this.allStandings = _.chain(this.standings)
                         .groupBy('division')
                         .toPairs()
                         .map(item => _.zipObject(['divisionName','divisionStandings'], item))
-                        .value();
-    console.log('division standings ' , this.allStandings)
+                        .value();*/
+    console.log('division standings ' , this.standings)
 
+  }
 
+  getHeader(record, recordIndex, records){
+    if(recordIndex  === 0 || record.division !== records[recordIndex-1].division){
+      return record.division;
+    }else
+      return null;
   }
 
 }
